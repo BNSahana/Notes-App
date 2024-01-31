@@ -14,8 +14,8 @@ const Home = () => {
   }, []);
 
   const [screenSize, setScreenSize] = useState(getScreen);
-  const [openModal, setOpenModal] = useState(false);
-  const [groupSelect, setGroupSelect] = useState(null);
+  const [popup, setPopup] = useState(false);
+  const [selectGroup, setSelectGroup] = useState(null);
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
@@ -41,14 +41,14 @@ const Home = () => {
   }, []);
 
   const handleClick = (group) => {
-    setGroupSelect(group);
+    setSelectGroup(group);
   };
 
   const renderMobileSidebar = () => (
     <div className={styles.mobile__sidebar__container}>
-      {groupSelect ? (
+      {selectGroup ? (
         <NotesContent
-          groupSelect={groupSelect}
+          selectGroup={selectGroup}
           groups={groups}
           setGroups={setGroups}
         />
@@ -62,7 +62,7 @@ const Home = () => {
           )}
           <button
             className={styles.mobile_create__group__button}
-            onClick={() => setOpenModal(true)}
+            onClick={() => setPopup(true)}
           >
             +
           </button>
@@ -71,7 +71,7 @@ const Home = () => {
               <div
                 key={group.id}
                 className={`${styles.mobile__groupItem} ${
-                  groupSelect === group ? styles.selected : ""
+                  selectGroup === group ? styles.selected : ""
                 }`}
                 onClick={() => handleClick(group)}
               >
@@ -88,9 +88,9 @@ const Home = () => {
         </>
       )}
 
-      {openModal && (
+      {popup && (
         <CreateGroups
-          closeModal={setOpenModal}
+          setPopup={setPopup}
           setGroups={setGroups}
           groups={groups}
         />
@@ -109,7 +109,7 @@ const Home = () => {
         )}
         <button
           className={styles.desktop__create__group__button}
-          onClick={() => setOpenModal(true)}
+          onClick={() => setPopup(true)}
         >
           +
         </button>
@@ -118,7 +118,7 @@ const Home = () => {
             <div
               key={group.id}
               className={`${styles.desktop__groupItem} ${
-                groupSelect === group ? styles.selected : ""
+                selectGroup === group ? styles.selected : ""
               }`}
               onClick={() => handleClick(group)}
             >
@@ -133,17 +133,17 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {openModal && (
+      {popup && (
         <CreateGroups
-          closeModal={setOpenModal}
+        setPopup={setPopup}
           setGroups={setGroups}
           groups={groups}
         />
       )}
       <div className={styles.message__container}>
-        {groupSelect ? (
+        {selectGroup ? (
           <NotesContent
-            groupSelect={groupSelect}
+            selectGroup={selectGroup}
             groups={groups}
             setGroups={setGroups}
           />

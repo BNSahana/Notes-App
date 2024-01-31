@@ -1,6 +1,7 @@
 :root {
   --primary-color: #000;
   --modal-background: rgba(47, 47, 47, 0.75);
+  --erorr-color : #ff0000;
 }
 
 /* Desktop styling */
@@ -78,7 +79,7 @@
   margin-top: 30px;
 }
 .error {
-  color: red;
+  color: var(--erorr-color);
   text-align: end;
 }
 /* Mobile styling */
@@ -153,7 +154,7 @@
   margin-top: 35px;
 }
 .mobile__modal__error {
-  color: red;
+  color: var(--erorr-color);
   text-align: end;
   font-size: 12px;
 }
